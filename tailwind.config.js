@@ -5,9 +5,9 @@
 ** Default: https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js
 */
 module.exports = {
-  purge: [
-    '@/**/*.vue'
-  ],
+  purge: {
+    enabled: false
+  },
   theme: {
     colors: {
       primary: {
