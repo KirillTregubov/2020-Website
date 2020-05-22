@@ -4,6 +4,9 @@ export default {
    ** Headers of the page
    */
   head: {
+    htmlAttrs: {
+      lang: 'en'
+    },
     title: 'Kirill Tregubov',
     meta: [
       { charset: 'utf-8' },
@@ -14,7 +17,7 @@ export default {
       {
         hid: 'description',
         name: 'description',
-        content: process.env.npm_package_description || ''
+        content: 'Kirill Tregubov\'s portfolio website, which lists his ongoing and previous projects.'
       },
       {
         name: 'theme-color',

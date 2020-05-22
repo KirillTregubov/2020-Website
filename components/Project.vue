@@ -9,7 +9,7 @@
         <div>
           <a class="btn primary" :href="demo" target="_blank" rel="noopener" v-if="demo">Demo</a>
           <a class="btn primary" :href="source" target="_blank" rel="noopener" v-else-if="source">Source Code</a>
-          <nuxt-link class="btn primary" :to="info" v-else-if="isLive">Learn More</nuxt-link>
+          <nuxt-link class="btn primary" :to="info" v-else-if="isLive">Read More</nuxt-link>
           <a class="btn disabled" v-else>Coming Soon</a>
         </div>
         <div class="ml-auto" v-if="!isLive">
