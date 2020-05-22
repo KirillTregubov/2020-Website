@@ -61,7 +61,9 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: [],
+  modules: [
+    'nuxt-imagemin',
+  ],
   /*
    ** Build configuration
    */
