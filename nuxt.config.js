@@ -22,10 +22,6 @@ export default {
       {
         name: 'theme-color',
         content: '#ffffff'
-      },
-      {
-        name: 'yandex-configuration',
-        content: 'c851d2889cf4132d'
       }
     ],
     noscript: [{ innerHTML: 'This website requires JavaScript. Please do not hesitate to contact me at contact@kirilltregubov.com.' }],
