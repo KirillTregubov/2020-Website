@@ -20,8 +20,7 @@
           <p>sidebarrrrrrrrrrrrrrrrrrrrrrrrrrrrr</p>
           <client-only placeholder="Loading...">
             <twitter-button class="share-button--circle" :description="article.title" btnText />
-            <facebook-button class="share-button--circle" btnText />
-            <linked-in-button class="share-button--circle" btnText />
+            <facebook-button class="share-button--circle" :description="article.title" btnText />
           </client-only>
         </div>
         <div class="w-full min-w-0 prose prose-sm sm:prose lg:prose-lg xl:prose-xl">
@@ -48,7 +47,6 @@
 <script>
 import TwitterButton from "~/node_modules/vue-share-buttons/src/components/TwitterButton"
 import FacebookButton from "~/node_modules/vue-share-buttons/src/components/FacebookButton"
-import LinkedInButton from "~/node_modules/vue-share-buttons/src/components/LinkedInButton"
 
 export default {
   layout: 'blogPost',
@@ -142,8 +140,7 @@ export default {
   },
   components: {
     TwitterButton,
-    FacebookButton,
-    LinkedInButton
+    FacebookButton
   }
 }
 </script>
