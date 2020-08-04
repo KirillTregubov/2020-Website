@@ -61,7 +61,7 @@ export default {
         { hid: 'og:title', property: 'og:title', content: this.article.title },
         { hid: 'og:image', property: 'og:image', content: 'https://kirilltregubov.com/_nuxt/img/3ac6461.jpg' },
         { hid: 'og:description', property: 'og:description', content: this.article.description },
-        { hid: 'og:url', property: 'og:url', content: 'https://kirilltregubov.com' + this.$route.fullPath }
+        { hid: 'og:url', property: 'og:url', content: 'https://personal-site-git-development.kirilltregubov.now.sh' + this.$route.fullPath }
       ]
     }
   },
