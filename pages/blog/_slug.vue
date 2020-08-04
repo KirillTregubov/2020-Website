@@ -20,8 +20,8 @@
           <p>sidebarrrrrrrrrrrrrrrrrrrrrrrrrrrrr</p>
           <client-only placeholder="Loading...">
             <twitter-button class="share-button--circle" :description="article.title" btnText />
-            <facebook-button class="share-button--circle" :description="article.title" btnText hasCounter />
-            <linked-in-button class="share-button--circle" :description="article.title" btnText hasCounter />
+            <facebook-button class="share-button--circle" btnText />
+            <linked-in-button class="share-button--circle" btnText />
           </client-only>
         </div>
         <div class="w-full min-w-0 prose prose-sm sm:prose lg:prose-lg xl:prose-xl">
@@ -52,10 +52,23 @@ import LinkedInButton from "~/node_modules/vue-share-buttons/src/components/Link
 
 export default {
   layout: 'blogPost',
+  head() {
+    return {
+      title: this.article.title + ' - Kirill Tregubov',
+      meta: [
+        { hid: 'description', property: 'description', content: this.article.description },
+        { hid: 'og:type', property: 'og:type', content: 'website' },
+        { hid: 'og:title', property: 'og:title', content: this.article.title },
+        { hid: 'og:image', property: 'og:image', content: 'https://kirilltregubov.com/_nuxt/img/3ac6461.jpg' },
+        { hid: 'og:description', property: 'og:description', content: this.article.description },
+        { hid: 'og:url', property: 'og:url', content: 'https://kirilltregubov.com' + this.$route.fullPath }
+      ]
+    }
+  },
   data: function () {
     return {
       progress: 0,
-      progressVisible: false,
+      progressVisible: false
     }
   },
   async asyncData ({ $content, params, redirect }) {
@@ -90,6 +103,9 @@ export default {
       }
       );
       return toc
+    },
+    currentPath () {
+      return $nuxt.$route.path
     }
   },
   methods: {
@@ -139,6 +155,10 @@ h4.toc {
 
 .share-button {
   @apply ml-0 leading-none !important;
+}
+
+.share-button svg {
+  @apply w-full h-full text-white fill-current !important;
 }
 
 .nuxt-content img {
