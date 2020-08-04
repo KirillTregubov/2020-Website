@@ -4,7 +4,7 @@
       <Header />
 
       <div class="mt-12 text-lg leading-snug">
-        <p>Hey! I’m Kirill Tregubov, an 18 year old <span class="text-primary-700">junior full stack developer</span> proficient in Vue.js and other web technologies and an aspiring entrepreneur from Canada. I’m also a <span class="text-primary-700"> first year university student</span> pursuing a Bachelor of Computer Science at the University of Toronto.</p>
+        <p>Hey! I’m Kirill Tregubov, an 18 year old <span class="text-primary-700">junior full stack developer</span> proficient in Vue.js and other web technologies and an aspiring entrepreneur from Canada. My current tech stack of preference is Nuxt.js. I’m also a <span class="text-primary-700"> first year university student</span> pursuing a Bachelor of Computer Science at the University of Toronto.</p>
         <p class="mt-4">Right now I’m focusing on school work, attending hackathons, and working on <router-link to="/housetracker" class="inline-link">House Tracker</router-link> and <router-link to="/winelier" class="inline-link">Winelier</router-link> during my free time.</p>
         <p class="mt-4">I’m currently available during Summer 2020. If you have a project in mind, or a position at your company, feel free to email me at <a class="inline-link" href="mailto:contact@kirilltregubov.com" target="_blank">contact@kirilltregubov.com.</a></p>
       </div>

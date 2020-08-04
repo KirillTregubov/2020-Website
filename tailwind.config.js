@@ -4,12 +4,15 @@
 ** Docs: https://tailwindcss.com/docs/configuration
 ** Default: https://github.com/tailwindcss/tailwindcss/blob/master/stubs/defaultConfig.stub.js
 */
+const defaultTheme = require('tailwindcss/defaultTheme')
+
 module.exports = {
-  purge: {
-    enabled: false
-  },
+  purge: [
+    './**/*.vue'
+  ],
   theme: {
     colors: {
+      white: '#fff',
       primary: {
         '900': '#841003',
         '800': '#AD1D07',
@@ -35,18 +38,19 @@ module.exports = {
         '050': '#F5F7FA',
       }
     },
-    fontFamily: {
-      'body': ['Proxima'],
-    },
-    screens: {
-      'sm': '640px',
-      'md': '768px',
-      'lg': '1024px',
-      'xl': '1280px',
-      '2xl': '1920px'
+    extend: {
+      fontFamily: {
+        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+      },
+      screens: {
+        'xs': '375px'
+      }
     }
   },
   variants: {
     margin: ['responsive', 'first', 'last', 'even']
-  }
+  },
+  plugins: [
+    require('@tailwindcss/typography')
+  ]
 }

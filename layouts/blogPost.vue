@@ -1,10 +1,31 @@
 <template>
-  <div id="app" class="antialiased font-sans m-0 text-neutral-900">
-    <nuxt />
-  </div>
+<div class="antialiased font-sans">
+  <ProgressBar v-show="progressVisible" :value="progress" />
+  <nuxt class="max-w-4xl xl:max-w-5xl m-auto p-6 md:px-8" />
+</div>
 </template>
 
+<script>
+export default {
+  data: function () {
+    return {
+      progress: 0,
+      progressVisible: false,
+    }
+  }
+}
+</script>
+
 <style lang="postcss">
+/*a:focus {
+  @apply outline-none shadow-outline;
+}*/
+
+/* body {
+  @apply text-neutral-900;
+  margin: 0;
+}
+
 .inline-link {
   @apply relative font-semibold;
 }
@@ -24,15 +45,10 @@
   transform-origin: bottom right;
 }
 
-/* a.inline-link {
-  background-image: linear-gradient(120deg, theme('textColor.primary.400') 0%, theme('textColor.primary.200') 100%);
-  background-repeat: no-repeat;
-  background-size: 100% 0.2em;
-  background-position: 0 88%;
-  transition: background-size 0.25s ease-in;
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .2s;
 }
-
-a.inline-link:hover, a.inline-link:focus {
-  background-size: 100% 88%;
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 } */
 </style>

@@ -5,16 +5,26 @@
   "author": "Kirill Tregubov",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "nuxt dev",
     "build": "nuxt build",
     "start": "nuxt start",
+    "serve": "nuxt serve",
     "generate": "nuxt generate"
   },
   "dependencies": {
-    "nuxt": "^2.0.0",
-    "nuxt-imagemin": "^1.0.0"
+    "@nuxt/content": "^1.5.3",
+    "@tailwindcss/typography": "^0.2.0",
+    "nuxt": "^2.14.0",
+    "nuxt-imagemin": "^1.0.0",
+    "reading-time": "^1.2.0",
+    "remark": "^12.0.1",
+    "strip-markdown": "^3.1.2",
+    "tailwindcss": "^1.6.1",
+    "vue-read-progress": "^1.0.4",
+    "vue-share-buttons": "^1.1.0"
   },
   "devDependencies": {
-    "@nuxtjs/tailwindcss": "^1.0.0"
+    "@nuxtjs/moment": "^1.6.1",
+    "@nuxtjs/tailwindcss": "^1.4.1"
   }
 }
