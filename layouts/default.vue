@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="antialiased font-sans m-0 text-neutral-900">
+  <div id="app" class="antialiased font-sans text-neutral-900">
     <nuxt />
   </div>
 </template>
@@ -23,16 +23,4 @@
   transform: scaleX(0);
   transform-origin: bottom right;
 }
-
-/* a.inline-link {
-  background-image: linear-gradient(120deg, theme('textColor.primary.400') 0%, theme('textColor.primary.200') 100%);
-  background-repeat: no-repeat;
-  background-size: 100% 0.2em;
-  background-position: 0 88%;
-  transition: background-size 0.25s ease-in;
-}
-
-a.inline-link:hover, a.inline-link:focus {
-  background-size: 100% 88%;
-} */
 </style>

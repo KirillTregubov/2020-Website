@@ -1,12 +1,12 @@
 <template>
   <div id="home">
-    <div class="max-w-4xl xl:max-w-5xl m-auto p-6 md:px-8">
+    <div class="max-w-4xl xl:max-w-5xl m-auto p-6 md:px-8 ">
       <Header />
 
-      <div class="mt-12 text-lg leading-snug">
-        <p>Hey! I’m Kirill Tregubov, an 18 year old <span class="text-primary-700">junior full stack developer</span> proficient in Vue.js and other web technologies and an aspiring entrepreneur from Canada. My current tech stack of preference is Nuxt.js. I’m also a <span class="text-primary-700"> first year university student</span> pursuing a Bachelor of Computer Science at the University of Toronto.</p>
-        <p class="mt-4">Right now I’m focusing on school work, attending hackathons, and working on <router-link to="/housetracker" class="inline-link">House Tracker</router-link> and <router-link to="/winelier" class="inline-link">Winelier</router-link> during my free time.</p>
-        <p class="mt-4">I’m currently available during Summer 2020. If you have a project in mind, or a position at your company, feel free to email me at <a class="inline-link" href="mailto:contact@kirilltregubov.com" target="_blank">contact@kirilltregubov.com.</a></p>
+      <div class="mt-12 text-lg">
+        <p>Hey! I’m Kirill Tregubov, an 18-year-old <span class="text-primary-700">Full-Stack Web Developer</span> from Canada working with an amazing team at <a class="inline-link" href="https://creativeoverhaul.ca" target="_blank" rel="noopener">Creative Overhaul</a>. Right now I'm building modern web experiences using Vue.js and its various frameworks, with a preference of using Nuxt.js. My preferred tech stack also includes Tailwind CSS, Node.js, Hasura, and GraphQL. I’m also a second-year university student <span class="text-primary-700">pursuing a BSc in Computer Science</span> at the University of Toronto.</p>
+        <p class="mt-4">Right now I’m diligently working with my team, focusing on schoolwork, and writing occasional articles on my <nuxt-link to="/blog" class="inline-link">blog</nuxt-link>.</p>
+        <p class="mt-4">I’m currently available for freelance work and Summer 2021 internships. If you have a project in mind or a position at your company, feel free to email me at <a class="inline-link" href="mailto:contact@kirilltregubov.com" target="_blank">contact@kirilltregubov.com</a>.</p>
       </div>
 
       <div class="mt-8 social-buttons leading-none">
@@ -37,13 +37,13 @@
       </div>
 
       <div class="mt-8 pb-6 text-lg leading-none">
-        <a class="inline-link font-normal" href="/files/resume.pdf" target="_blank">Download a copy of my <span class="whitespace-no-wrap">resume ›</span></a>
+        <a class="inline-link" href="/files/resume.pdf" target="_blank">View a copy of my <span class="whitespace-no-wrap">resume ›</span></a>
       </div>
     </div>
 
     <div id="projects" class="p-6 md:p-0">
       <div class="max-w-4xl xl:max-w-5xl m-auto md:p-6 md:px-8">
-        <h1 class="pb-1 text-2-5xl font-bold">Currently Developing</h1>
+        <h1 class="pb-1 text-2-5xl font-bold">Conceptual Projects</h1>
         <div class="project-container">
           <Project name="House Tracker" description="Web app for students living in residence that keeps track of event participation." :stack="['Vue.js', 'Vuex', 'Tailwind CSS', 'PHP', 'MySQL']" info="/housetracker" />
           <Project name="Winelier" description="A web directory of Canadian wineries, wine related events and a blog." :stack="['Vue.js', 'Vuex', 'Sass', 'PHP', 'MySQL']" info="/winelier" />
@@ -52,11 +52,13 @@
       <div class="max-w-4xl xl:max-w-5xl m-auto md:p-6 md:px-8 md:pt-0">
         <h1 class="mt-8 md:mt-4 pb-1 text-2-5xl font-bold">Past Projects</h1>
         <div class="project-container">
-          <Project name="Portfolio Redesign" description="Redesigned my portfolio website to reflect changes in my life." :stack="['Vue.js', 'Tailwind CSS']" :isLive="true" info="/redesign" />
-          <Project name="Harkness Helper" description="A web app for high school teachers to track Harkness tables." :stack="['Vue.js', 'Vuex', 'Sass', 'Firebase']" demo="https://harknesshelper.ga" source="https://github.com/KTregubov/Harkness-Helper" />
+          <!-- <Project name="Portfolio Redesign" description="Redesigned my portfolio website to reflect changes in my life." :stack="['Vue.js', 'Tailwind CSS']" :isLive="true" info="/redesign" /> -->
+          <!-- demo="https://harknesshelper.ga" -->
+          <Project name="Harkness Helper" description="A web app for high school teachers to track Harkness tables." :stack="['Vue.js', 'Vuex', 'Sass', 'Firebase']" source="https://github.com/KTregubov/Harkness-Helper" />
           <Project name="Professor Circuit" description="Basic circuit builder simulator built in a web app." :stack="['Vue.js', 'Sass']" source="https://github.com/KTregubov/SPH4U-ISP" />
           <Project name="Contact List" description="A simple contact list full stack web app." :stack="['Vue.js', 'Sass', 'Node.js', 'MongoDB']" source="https://github.com/KirillTregubov/ICS4U/tree/master/MEVN%20Stack/Contact%20List" />
-          <Project name="Blackjack" description="A blackjack Java game ported to the web." :stack="['JavaScript', 'HTML5', 'CSS3']" demo="/ICS4U/Blackjack/" source="https://github.com/KTregubov/ICS4U/tree/master/Vanilla%20JavaScript/BlackJack%20Port" />
+          <!-- demo="/ICS4U/Blackjack/" -->
+          <Project name="Blackjack" description="A blackjack Java game ported to the web." :stack="['JavaScript', 'HTML5', 'CSS3']" source="https://github.com/KTregubov/ICS4U/tree/master/Vanilla%20JavaScript/BlackJack%20Port" />
         </div>
       </div>
     </div>

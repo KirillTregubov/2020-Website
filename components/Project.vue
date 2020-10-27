@@ -9,12 +9,12 @@
         <div>
           <a class="btn primary" :href="demo" target="_blank" rel="noopener" v-if="demo">Demo</a>
           <a class="btn primary" :href="source" target="_blank" rel="noopener" v-else-if="source">Source Code</a>
-          <nuxt-link class="btn primary" :to="info" v-else-if="isLive">Read More</nuxt-link>
+          <nuxt-link class="btn primary" :to="info" v-else-if="isLive">Read Article</nuxt-link>
           <a class="btn disabled" v-else>Coming Soon</a>
         </div>
         <div class="ml-auto" v-if="!isLive">
           <a class="btn inline" :href="source" target="_blank" rel="noopener" v-if="demo && source">Source Code ›</a>
-          <nuxt-link class="btn inline" :to="info" v-else-if="info">Learn More ›</nuxt-link>
+          <nuxt-link class="btn inline" :to="info" v-else-if="info">Read Article ›</nuxt-link>
         </div>
       </div>
     </div>

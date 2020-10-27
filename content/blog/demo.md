@@ -2,6 +2,7 @@
 title: Tailwind Typography Demo
 description: Demo of the TailwindCSS typography plugin.
 createdAt: 2020-07-27T16:12:19.265Z
+hidden: true
 ---
 
 <p className="lead">

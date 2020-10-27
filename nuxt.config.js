@@ -7,7 +7,10 @@ export default {
    */
   head: {
     htmlAttrs: { lang: 'en' },
-    title: 'Kirill Tregubov',
+    titleTemplate: (titleChunk) => {
+      // If undefined or blank then we don't need the hyphen
+      return titleChunk ? `${titleChunk} - Kirill Tregubov` : 'Kirill Tregubov';
+    },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },

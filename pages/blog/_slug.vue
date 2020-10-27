@@ -1,50 +1,76 @@
 <template>
   <div>
     <Header />
-    <article class="">
-      <div class="text-center pb-6">
-        <dl class="flex justify-center text-base leading-4 font-medium text-neutral-500">
+    <client-only>
+      <back-to-top>
+        <button class="fixed bottom-0 right-0 m-6 text-primary-400 rounded-full focus:outline-none focus:shadow-outline">
+          <svg class="h-10 w-10 -m-1 fill-current" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd"></path></svg>
+        </button>
+      </back-to-top>
+    </client-only>
+    <div class="divide-y divide-neutral-200">
+      <div class="text-center pb-3">
+        <dl class="block xs:flex justify-center text-base leading-4 font-medium text-neutral-500">
           <div>
             <dt class="sr-only">Published on</dt>
             <dd>
               <time :datetime="article.createdAt">{{ formatDate(article.createdAt) }}</time>
             </dd>
           </div>
-          <p class="mx-2">•</p>
-          <dd>{{ article.timeToRead }} minute read</dd>
+          <p class="hidden xs:block mx-2">•</p>
+          <dd class="mt-2 xs:mt-0">{{ article.timeToRead }} minute read</dd>
         </dl>
-        <h1 class="inline-block text-3xl font-bold text-neutral-900 tracking-tight sm:text-4xl md:text-5xl">{{ article.title }}</h1>
+        <h1 class="inline-block text-3xl leading-8 py-3 font-bold text-neutral-900 tracking-tight sm:text-4xl md:py-6 md:text-5xl">{{ article.title }}</h1>
       </div>
-      <div class="flex w-full">
-        <div class="w-1/5 break-words mr-10">
-          <p>sidebarrrrrrrrrrrrrrrrrrrrrrrrrrrrr</p>
-          <client-only placeholder="Loading...">
-            <twitter-button class="share-button--circle" :description="article.title" btnText />
-            <facebook-button class="share-button--circle" :description="article.title" btnText />
-          </client-only>
+      <div class="flex flex-col md:flex-row w-full">
+        <div class="order-last w-full md:w-1/4 md:order-none sticky top-0 break-words mr-10 divide-y divide-neutral-200">
+          <div>
+            <div v-if="next" class="my-6">
+              <h2 class="text-sm tracking-wide font-medium uppercase text-neutral-500">Next Article</h2>
+              <nuxt-link :to="'/blog/' + next.slug" class="text-base font-medium text-primary-500">{{ next.title }}</nuxt-link>
+            </div>
+            <div v-if="prev" class="my-6">
+              <h2 class="text-sm tracking-wide font-medium uppercase text-neutral-500">Prev Article</h2>
+              <nuxt-link :to="'/blog/' + prev.slug" class="text-base font-medium text-primary-500">{{ prev.title }}</nuxt-link>
+            </div>
+          </div>
+          <div class="py-6">
+            <h2 class="text-sm tracking-wide font-medium uppercase text-neutral-500">Share article</h2>
+            <client-only placeholder="Loading...">
+              <twitter-button class="share-button--circle" :description="article.title" btnText />
+              <facebook-button class="share-button--circle" :description="article.title" btnText />
+            </client-only>
+          </div>
         </div>
-        <div class="w-full min-w-0 prose prose-sm sm:prose lg:prose-lg xl:prose-xl">
-          <h4 class="toc">Table of Contents</h4>
-          <ul>
-            <li v-for="link of tableOfContents" :key="link.id">
-              <NuxtLink :to="`#${link.id}`">{{ link.text }}</NuxtLink>
-              <ul v-if="link.children.length > 0">
-                <li v-for="child of link.children" :key="child.id">
-                  <NuxtLink :to="`#${child.id}`">{{ child.text }}</NuxtLink>
+        <article class="w-full pt-5 min-w-0 divide-y divide-neutral-200 border-b border-neutral-200 md:border-0">
+          <div class="prose lg:prose-lg xl:prose-xl">
+            <div v-if="tableOfContents.length > 0">
+              <h4 class="toc">Table of Contents</h4>
+              <ul>
+                <li v-for="link of tableOfContents" :key="link.id">
+                  <NuxtLink :to="`#${link.id}`">{{ link.text }}</NuxtLink>
+                  <ul v-if="link.children.length > 0">
+                    <li v-for="child of link.children" :key="child.id">
+                      <NuxtLink :to="`#${child.id}`">{{ child.text }}</NuxtLink>
+                    </li>
+                  </ul>
                 </li>
               </ul>
-            </li>
-          </ul>
-          <nuxt-content :document="article" />
-        </div>
+            </div>
+            <nuxt-content :document="article" />
+          </div>
+          <div>
+            <h4 class="py-6 text-lg text-gray">Liked what you read? <nuxt-link to="/blog" class="inline-link">Read more ›</nuxt-link></h4>
+          </div>
+        </article>
       </div>
-      
       <!-- <pre>{{ article }}</pre> -->
-    </article>
+    </div>
   </div>
 </template>
 
 <script>
+import BackToTop from '~/node_modules/vue-backtotop'
 import TwitterButton from "~/node_modules/vue-share-buttons/src/components/TwitterButton"
 import FacebookButton from "~/node_modules/vue-share-buttons/src/components/FacebookButton"
 
@@ -59,25 +85,18 @@ export default {
         { hid: 'og:title', property: 'og:title', content: this.article.title },
         { hid: 'og:image', property: 'og:image', content: 'https://kirilltregubov.com/_nuxt/img/3ac6461.jpg' },
         { hid: 'og:description', property: 'og:description', content: this.article.description },
-        { hid: 'og:url', property: 'og:url', content: 'https://personal-site-git-development.kirilltregubov.now.sh' + this.$route.fullPath }
+        { hid: 'og:url', property: 'og:url', content: 'https://kirilltregubov.com' + this.$route.fullPath }
       ]
-    }
-  },
-  data: function () {
-    return {
-      progress: 0,
-      progressVisible: false
     }
   },
   async asyncData ({ $content, params, redirect }) {
     const article = await $content('/blog/', params.slug).fetch()
     .catch(e => {
       return redirect('/blog')
-      // error({ statusCode: 404, specialMessage: 'Blog post not found' })
     })
 
     const [prev, next] = await $content('blog')
-      .only(['title', 'slug'])
+      .only(['title', 'slug', 'hidden'])
       .sortBy('createdAt', 'asc')
       .surround(params.slug)
       .fetch()
@@ -110,35 +129,12 @@ export default {
     formatDate (date) {
       return this.$moment(date).format('dddd, MMMM Do, YYYY')
     },
-    onScroll () {
-      var progress = 100 * window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)
-      if (progress > 100) {
-        this.progress = 100
-      } else if (progress < 0) {
-        this.progress = 0
-      } else {
-        this.progress = progress
-      }
-    }
-  },
-  mounted() {
-    window.onNuxtReady(() => {
-      this.progressVisible = true
-      this.onScroll()
-    })
-  },
-  created() {
-    if (process.browser) {
-      this.onScroll()
-      window.addEventListener('scroll', this.onScroll);
-    }
-  },
-  beforeDestroy() {
-    if (process.browser) {
-      window.removeEventListener('scroll', this.onScroll);
+    scrollToTop() {
+      window.scrollTo(0,0);
     }
   },
   components: {
+    BackToTop,
     TwitterButton,
     FacebookButton
   }
@@ -147,7 +143,7 @@ export default {
 
 <style lang="postcss">
 h4.toc {
-  margin-bottom: 0 !important;
+  @apply my-0 !important;
 }
 
 .share-button {
@@ -156,6 +152,10 @@ h4.toc {
 
 .share-button svg {
   @apply w-full h-full text-white fill-current !important;
+}
+
+article > *:first-child {
+  @apply mt-0 !important;
 }
 
 .nuxt-content img {

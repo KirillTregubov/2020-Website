@@ -12,7 +12,9 @@ module.exports = {
   ],
   theme: {
     colors: {
+      transparent: 'transparent',
       white: '#fff',
+      gray: '#4a5568',
       primary: {
         '900': '#841003',
         '800': '#AD1D07',
@@ -38,12 +40,13 @@ module.exports = {
         '050': '#F5F7FA',
       }
     },
+    screens: {
+      'xs': '375px',
+      ...defaultTheme.screens
+    },
     extend: {
       fontFamily: {
         sans: ['Inter var', ...defaultTheme.fontFamily.sans],
-      },
-      screens: {
-        'xs': '375px'
       }
     }
   },
