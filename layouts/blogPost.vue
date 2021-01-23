@@ -1,5 +1,5 @@
 <template>
-  <div class="antialiased font-sans text-neutral-900">
+  <div class="antialiased font-sans text-gray-900">
     <ProgressBar v-show="progressVisible" :value="progress" />
     <nuxt class="max-w-4xl xl:max-w-5xl m-auto p-6 md:px-8" keep-alive />
   </div>

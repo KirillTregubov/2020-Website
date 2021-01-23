@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <Container>
     <Header />
     <client-only>
       <back-to-top>
@@ -8,9 +8,9 @@
         </button>
       </back-to-top>
     </client-only>
-    <div class="divide-y divide-neutral-200">
+    <div class="divide-y divide-gray-200">
       <div class="text-center pb-3">
-        <dl class="block xs:flex justify-center text-base leading-4 font-medium text-neutral-500">
+        <dl class="block xs:flex justify-center text-base leading-4 font-medium text-gray-500">
           <div>
             <dt class="sr-only">Published on</dt>
             <dd>
@@ -20,31 +20,31 @@
           <p class="hidden xs:block mx-2">•</p>
           <dd class="mt-2 xs:mt-0">{{ article.timeToRead }} minute read</dd>
         </dl>
-        <h1 class="inline-block text-3xl leading-8 py-3 font-bold text-neutral-900 tracking-tight sm:text-4xl md:py-6 md:text-5xl">{{ article.title }}</h1>
+        <h1 class="inline-block text-3xl leading-8 py-3 font-bold text-gray-900 tracking-tight sm:text-4xl md:py-6 md:text-5xl">{{ article.title }}</h1>
       </div>
       <div class="flex flex-col md:flex-row w-full">
-        <div class="order-last w-full md:w-1/4 md:order-none sticky top-0 break-words mr-10 divide-y divide-neutral-200">
+        <div class="order-last w-full md:w-1/4 md:order-none sticky top-0 break-words mr-10 divide-y divide-gray-200">
           <div>
             <div v-if="next" class="my-6">
-              <h2 class="text-sm tracking-wide font-medium uppercase text-neutral-500">Next Article</h2>
+              <h2 class="text-sm tracking-wide font-medium uppercase text-gray-500">Next Article</h2>
               <nuxt-link :to="'/blog/' + next.slug" class="text-base font-medium text-primary-500">{{ next.title }}</nuxt-link>
             </div>
             <div v-if="prev" class="my-6">
-              <h2 class="text-sm tracking-wide font-medium uppercase text-neutral-500">Prev Article</h2>
+              <h2 class="text-sm tracking-wide font-medium uppercase text-gray-500">Prev Article</h2>
               <nuxt-link :to="'/blog/' + prev.slug" class="text-base font-medium text-primary-500">{{ prev.title }}</nuxt-link>
             </div>
           </div>
           <div class="py-6">
-            <h2 class="text-sm tracking-wide font-medium uppercase text-neutral-500">Share article</h2>
+            <h2 class="text-sm tracking-wide font-medium uppercase text-gray-500">Share article</h2>
             <client-only placeholder="Loading...">
               <twitter-button class="share-button--circle" :description="article.title" btnText />
               <facebook-button class="share-button--circle" :description="article.title" btnText />
             </client-only>
           </div>
         </div>
-        <article class="w-full pt-5 min-w-0 divide-y divide-neutral-200 border-b border-neutral-200 md:border-0">
+        <article class="w-full pt-5 min-w-0 divide-y divide-gray-200 border-b border-gray-200 md:border-0">
           <div class="prose lg:prose-lg xl:prose-xl">
-            <div v-if="tableOfContents.length > 0">
+            <!-- <div v-if="tableOfContents.length > 0">
               <h4 class="toc">Table of Contents</h4>
               <ul>
                 <li v-for="link of tableOfContents" :key="link.id">
@@ -56,7 +56,7 @@
                   </ul>
                 </li>
               </ul>
-            </div>
+            </div> -->
             <nuxt-content :document="article" />
           </div>
           <div>
@@ -66,7 +66,7 @@
       </div>
       <!-- <pre>{{ article }}</pre> -->
     </div>
-  </div>
+  </Container>
 </template>
 
 <script>
@@ -75,7 +75,7 @@ import TwitterButton from "~/node_modules/vue-share-buttons/src/components/Twitt
 import FacebookButton from "~/node_modules/vue-share-buttons/src/components/FacebookButton"
 
 export default {
-  layout: 'blogPost',
+  // layout: 'blogPost',
   head() {
     return {
       title: this.article.title + ' - Kirill Tregubov',
@@ -108,22 +108,22 @@ export default {
     }
   },
   computed: {
-    tableOfContents () {
-      var toc = []
-      this.article.toc.forEach(element => {
-        if (element.depth === 2) {
-          element.children = []
-          toc.push(element)
-        } else {
-          toc[toc.length - 1].children.push(element)
-        }
-      }
-      );
-      return toc
-    },
-    currentPath () {
-      return $nuxt.$route.path
-    }
+    // tableOfContents () {
+    //   var toc = []
+    //   this.article.toc.forEach(element => {
+    //     if (element.depth === 2) {
+    //       element.children = []
+    //       toc.push(element)
+    //     } else {
+    //       toc[toc.length - 1].children.push(element)
+    //     }
+    //   }
+    //   );
+    //   return toc
+    // },
+    // currentPath () {
+    //   return $nuxt.$route.path
+    // }
   },
   methods: {
     formatDate (date) {

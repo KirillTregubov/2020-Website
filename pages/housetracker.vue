@@ -9,12 +9,7 @@
 </template>
 
 <script>
-import Article from '@/components/Article.vue'
-
 export default {
-  name: 'HouseTracker',
-  components: {
-    Article
-  }
+  name: 'HouseTracker'
 }
 </script>

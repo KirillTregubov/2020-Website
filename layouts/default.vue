@@ -1,10 +1,28 @@
 <template>
-  <div id="app" class="antialiased font-sans text-neutral-900">
+  <div id="app" class="antialiased font-sans text-gray-900 bg-gray-50">
+    <Header />
     <nuxt />
   </div>
 </template>
 
+<script>
+export default {
+  head() {
+    return {
+      htmlAttrs: {
+          // class: 'overflow-x-none'
+      }
+    }
+  }
+}
+</script>
+
 <style lang="postcss">
+.anchor-link {
+  scroll-margin-top: 100px;
+  scroll-snap-margin-top: 100px;
+}
+
 .inline-link {
   @apply relative font-semibold;
 }

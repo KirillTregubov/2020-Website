@@ -3,3 +3,8 @@
 @import 'tailwindcss/components';
 /* purgecss end ignore */
 @import 'tailwindcss/utilities';
+
+html {
+    margin-right: calc(-1 * (100vw - 100%));
+    overflow-x: hidden;
+}
