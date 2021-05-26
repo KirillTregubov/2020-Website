@@ -1,8 +1,8 @@
 <template>
-  <header class="fixed top-0 transform-gpu text-gray-050 w-full z-10">
+  <header class="fixed top-0 bg-gray-900 bg-opacity-95 transform-gpu text-gray-050 w-full z-10">
     <Container class="block justify-between select-none md:flex">
       <div class="flex justify-between items-center z-20 xl:-ml-24">
-        <nuxt-link :to="isBlog ? '/blog' : '/'" class="flex items-center group">
+        <nuxt-link :to="isBlog ? '/blog' : '/'" class="flex items-center group" v-on:click.native="scrollToTop(isBlog)">
           <img class="hidden h-12 w-12 rounded-full lg:h-16 lg:w-16" :class="[isBlog ? 'sm:inline-block' : 'xs:inline-block']" src="@/assets/images/profile.jpg" alt="Portrait of Kirill Tregubov" />
           <h1 v-if="!isBlog" class="xs:ml-3 xl:ml-8 text-2xl lg:text-3xl xl:text-4xl font-black leading-none">
             Kirill Tregubov
@@ -23,40 +23,18 @@
         </button>
       </div>
 
-      <div class="hidden md:flex w-full z-10 text-gray-100 md:text-gray-200 rounded-md md:w-auto md:mt-0 md:items-center md:opacity-100">
+      <div class="smooth transform-gpu flex w-full z-10 text-gray-100 md:text-gray-200 rounded-md md:w-auto md:mt-0 md:items-center md:opacity-100" :class="[ !menu ? 'collapsed' : '']">
         <ul class="mt-6 md:mt-0 flex w-full justify-around md:space-x-3 font-semibold text-lg md:text-base">
-          <li v-if="isBlog" class="py-5 md:py-0">
-            <nuxt-link to="/" @click="menu = false" class="px-4 py-4 md:py-2 focus:outline-none hover:text-gray-50 focus:text-gray-50">Home</nuxt-link>
-          </li>
-          <li class="py-2 md:py-0">
-            <a v-if="isHome" href="#experience" @click="menu = false" class="px-4 py-4 md:py-2 focus:outline-none hover:text-gray-50 focus:text-gray-50">Experience</a>
-            <nuxt-link v-else to="/#experience" @click="menu = false" class="px-4 py-4 md:py-2 focus:outline-none hover:text-gray-50 focus:text-gray-50">Experience</nuxt-link>
+          <li v-if="isHome" class="py-2 md:py-0">
+            <a href="#experience" @click="menu = false" class="px-4 py-4 md:py-2 focus:outline-none hover:text-gray-50 focus:text-gray-50">Experience</a>
           </li>
           <li class="py-2 md:py-0">
             <a v-if="isHome" href="#projects" @click="menu = false" class="px-4 py-4 md:py-2 focus:outline-none hover:text-gray-50 focus:text-gray-50">Projects</a>
-            <nuxt-link v-else to="/#projects" @click="menu = false" class="px-4 py-4 md:py-2 focus:outline-none hover:text-gray-50 focus:text-gray-50">Projects</nuxt-link>
-          </li>
-          <li v-if="!isBlog" class="py-2 md:py-0">
-            <nuxt-link to="/blog" @click="menu = false" class="px-4 py-4 md:py-2 focus:outline-none hover:text-gray-50 focus:text-gray-50">Blog</nuxt-link>
-          </li>
-        </ul>
-      </div>
-
-      <div class="smooth transform-gpu flex md:hidden w-full z-10 text-gray-100 md:text-gray-200 rounded-md md:w-auto md:mt-0 md:items-center md:opacity-100" :class="[ !menu ? 'collapsed' : '']">
-        <ul class="mt-6 md:mt-0 flex w-full justify-around md:space-x-3 font-semibold text-lg md:text-base">
-          <li v-if="isBlog" class="py-5 md:py-0">
-            <nuxt-link to="/" @click="menu = false" class="px-4 py-4 md:py-2 focus:outline-none hover:text-gray-50 focus:text-gray-50">Home</nuxt-link>
+            <nuxt-link v-if="latestArticle" :to="latestArticle" @click="menu = false" class="px-4 py-4 md:py-2 focus:outline-none hover:text-gray-50 focus:text-gray-50">Latest Article</nuxt-link>
           </li>
           <li class="py-2 md:py-0">
-            <a v-if="isHome" href="#experience" @click="menu = false" class="px-4 py-4 md:py-2 focus:outline-none hover:text-gray-50 focus:text-gray-50">Experience</a>
-            <nuxt-link v-else to="/#experience" @click="menu = false" class="px-4 py-4 md:py-2 focus:outline-none hover:text-gray-50 focus:text-gray-50">Experience</nuxt-link>
-          </li>
-          <li class="py-2 md:py-0">
-            <a v-if="isHome" href="#projects" @click="menu = false" class="px-4 py-4 md:py-2 focus:outline-none hover:text-gray-50 focus:text-gray-50">Projects</a>
-            <nuxt-link v-else to="/#projects" @click="menu = false" class="px-4 py-4 md:py-2 focus:outline-none hover:text-gray-50 focus:text-gray-50">Projects</nuxt-link>
-          </li>
-          <li v-if="!isBlog" class="py-2 md:py-0">
-            <nuxt-link to="/blog" @click="menu = false" class="px-4 py-4 md:py-2 focus:outline-none hover:text-gray-50 focus:text-gray-50">Blog</nuxt-link>
+            <nuxt-link v-if="isHome" to="/blog" @click="menu = false" class="px-4 py-4 md:py-2 focus:outline-none hover:text-gray-50 focus:text-gray-50">Blog</nuxt-link>
+            <nuxt-link v-else to="/" @click="menu = false" class="px-4 py-4 md:py-2 focus:outline-none hover:text-gray-50 focus:text-gray-50">About Me</nuxt-link>
           </li>
         </ul>
       </div>
@@ -69,10 +47,23 @@ export default {
   name: 'Header',
   data () {
     return {
+      latestArticle: null,
       menu: false
     }
   },
+  async fetch() {
+    const article = await this.$content('blog')
+      .only([])
+      .where({ hidden: { $ne: true } })
+      .sortBy('createdAt', 'desc')
+      .limit(1)
+      .fetch()
+    this.latestArticle = article[0].path
+  },
   computed: {
+    isArticle () {
+      return this.$nuxt.$route.path.slice(this.$nuxt.$route.path.indexOf('blog') + 5).length > 0;
+    },
     isBlog () {
       return this.$nuxt.$route.path.includes('blog')
     },
@@ -82,12 +73,19 @@ export default {
   },
   methods: {
     away () {
-      console.log('away')
       this.menu = false
     },
     handleEscape (event) {
-      if (event.key === 'Esc' || event.key === 'Escape') {
-        this.menu = false
+      if (event.key === 'Esc' || event.key === 'Escape') away()
+    },
+    scrollToTop(isBlog) {
+      if (!isBlog) {
+        if (this.menu) this.menu = false
+        window.scroll({
+          top: 0, 
+          left: 0, 
+          behavior: 'smooth'
+        });
       }
     }
   },
@@ -105,20 +103,16 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-header {
-  @apply bg-gray-900 bg-opacity-80;
-  backdrop-filter: blur(20px);
+@media (max-width : 767px) {
+  .smooth {
+    will-change: max-height, opacity;
+    transition: all 350ms ease-in-out;
+    max-height: 650px;
+    opacity: 1;
+    margin-top: -1px;
+  }
 }
-
-.smooth {
-  will-change: max-height, opacity;
-  transition: all 350ms ease-in-out;
-  max-height: 650px;
-  opacity: 1;
-  margin-top: -1px;
-}
-
-@media (max-width : 768px) {
+@media (max-width : 767px) {
   .smooth.collapsed {
     max-height: 0px;
     overflow: hidden;

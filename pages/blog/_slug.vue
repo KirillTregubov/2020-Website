@@ -1,15 +1,10 @@
 <template>
-  <Container>
-    <Header />
-    <client-only>
-      <back-to-top>
-        <button class="fixed bottom-0 right-0 m-6 text-primary-400 rounded-full focus:outline-none focus:shadow-outline">
-          <svg class="h-10 w-10 -m-1 fill-current" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd"></path></svg>
-        </button>
-      </back-to-top>
-    </client-only>
+  <div>
+    <button class="fixed bottom-0 right-0 m-6 text-primary-400 rounded-full focus:outline-none focus:shadow-outline">
+      <svg class="h-10 w-10 -m-1 fill-current" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd"></path></svg>
+    </button>
     <div class="divide-y divide-gray-200">
-      <div class="text-center pb-3">
+      <Container class="text-center pb-3 pt-36">
         <dl class="block xs:flex justify-center text-base leading-4 font-medium text-gray-500">
           <div>
             <dt class="sr-only">Published on</dt>
@@ -21,61 +16,62 @@
           <dd class="mt-2 xs:mt-0">{{ article.timeToRead }} minute read</dd>
         </dl>
         <h1 class="inline-block text-3xl leading-8 py-3 font-bold text-gray-900 tracking-tight sm:text-4xl md:py-6 md:text-5xl">{{ article.title }}</h1>
-      </div>
-      <div class="flex flex-col md:flex-row w-full">
-        <div class="order-last w-full md:w-1/4 md:order-none sticky top-0 break-words mr-10 divide-y divide-gray-200">
-          <div>
-            <div v-if="next" class="my-6">
-              <h2 class="text-sm tracking-wide font-medium uppercase text-gray-500">Next Article</h2>
-              <nuxt-link :to="'/blog/' + next.slug" class="text-base font-medium text-primary-500">{{ next.title }}</nuxt-link>
+      </Container>
+      <Container>
+        <div class="flex flex-col md:flex-row w-full">
+          <article class="w-full pt-5 min-w-0 divide-y divide-gray-200 border-b border-gray-200 md:border-0">
+            <div class="prose lg:prose-lg xl:prose-xl">
+              <!-- <div v-if="tableOfContents.length > 0">
+                <h4 class="toc">Table of Contents</h4>
+                <ul>
+                  <li v-for="link of tableOfContents" :key="link.id">
+                    <NuxtLink :to="`#${link.id}`">{{ link.text }}</NuxtLink>
+                    <ul v-if="link.children.length > 0">
+                      <li v-for="child of link.children" :key="child.id">
+                        <NuxtLink :to="`#${child.id}`">{{ child.text }}</NuxtLink>
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </div> -->
+              <nuxt-content :document="article" />
             </div>
-            <div v-if="prev" class="my-6">
-              <h2 class="text-sm tracking-wide font-medium uppercase text-gray-500">Prev Article</h2>
-              <nuxt-link :to="'/blog/' + prev.slug" class="text-base font-medium text-primary-500">{{ prev.title }}</nuxt-link>
+            <div>
+              <h4 class="py-6 text-lg text-gray">Like what you read? <nuxt-link to="/blog" class="inline-link">Read more ›</nuxt-link></h4>
             </div>
-          </div>
-          <div class="py-6">
-            <h2 class="text-sm tracking-wide font-medium uppercase text-gray-500">Share article</h2>
-            <client-only placeholder="Loading...">
-              <twitter-button class="share-button--circle" :description="article.title" btnText />
-              <facebook-button class="share-button--circle" :description="article.title" btnText />
-            </client-only>
+          </article>
+          <div class="w-full md:w-1/4 sticky top-0 break-words ml-10 divide-y divide-gray-200">
+            <div>
+              <div v-if="next" class="my-6">
+                <h2 class="text-sm tracking-wide font-medium uppercase text-gray-500">Next Article</h2>
+                <nuxt-link :to="'/blog/' + next.slug" class="text-base font-medium text-primary-500">{{ next.title }}</nuxt-link>
+              </div>
+              <div v-if="prev" class="my-6">
+                <h2 class="text-sm tracking-wide font-medium uppercase text-gray-500">Prev Article</h2>
+                <nuxt-link :to="'/blog/' + prev.slug" class="text-base font-medium text-primary-500">{{ prev.title }}</nuxt-link>
+              </div>
+            </div>
+            <div class="py-6">
+              <h2 class="text-sm tracking-wide font-medium uppercase text-gray-500">Share article</h2>
+              <!-- <client-only placeholder="Loading...">
+                <twitter-button class="share-button--circle" :description="article.title" btnText />
+                <facebook-button class="share-button--circle" :description="article.title" btnText />
+              </client-only> -->
+            </div>
           </div>
         </div>
-        <article class="w-full pt-5 min-w-0 divide-y divide-gray-200 border-b border-gray-200 md:border-0">
-          <div class="prose lg:prose-lg xl:prose-xl">
-            <!-- <div v-if="tableOfContents.length > 0">
-              <h4 class="toc">Table of Contents</h4>
-              <ul>
-                <li v-for="link of tableOfContents" :key="link.id">
-                  <NuxtLink :to="`#${link.id}`">{{ link.text }}</NuxtLink>
-                  <ul v-if="link.children.length > 0">
-                    <li v-for="child of link.children" :key="child.id">
-                      <NuxtLink :to="`#${child.id}`">{{ child.text }}</NuxtLink>
-                    </li>
-                  </ul>
-                </li>
-              </ul>
-            </div> -->
-            <nuxt-content :document="article" />
-          </div>
-          <div>
-            <h4 class="py-6 text-lg text-gray">Liked what you read? <nuxt-link to="/blog" class="inline-link">Read more ›</nuxt-link></h4>
-          </div>
-        </article>
-      </div>
-      <!-- <pre>{{ article }}</pre> -->
+      </Container>
     </div>
-  </Container>
+  </div>
 </template>
-
+  
 <script>
 import BackToTop from '~/node_modules/vue-backtotop'
 import TwitterButton from "~/node_modules/vue-share-buttons/src/components/TwitterButton"
 import FacebookButton from "~/node_modules/vue-share-buttons/src/components/FacebookButton"
 
 export default {
-  // layout: 'blogPost',
+  layout: 'blogPost',
   head() {
     return {
       title: this.article.title + ' - Kirill Tregubov',
@@ -106,24 +102,6 @@ export default {
       prev,
       next
     }
-  },
-  computed: {
-    // tableOfContents () {
-    //   var toc = []
-    //   this.article.toc.forEach(element => {
-    //     if (element.depth === 2) {
-    //       element.children = []
-    //       toc.push(element)
-    //     } else {
-    //       toc[toc.length - 1].children.push(element)
-    //     }
-    //   }
-    //   );
-    //   return toc
-    // },
-    // currentPath () {
-    //   return $nuxt.$route.path
-    // }
   },
   methods: {
     formatDate (date) {

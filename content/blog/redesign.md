@@ -16,7 +16,7 @@ Another key goal that I set out to accomplish was making everything simpler, mor
 
 ### Previous version
 
-<figure>
+<!-- <figure>
   <img
     src="images/old-website.jpg"
     alt="Image of old website"
@@ -24,7 +24,7 @@ Another key goal that I set out to accomplish was making everything simpler, mor
   <figcaption>
     An image of what my website looked like before this redesign.
   </figcaption>
-</figure>
+</figure> -->
 
 ## First steps
 

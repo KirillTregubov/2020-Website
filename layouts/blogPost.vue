@@ -1,7 +1,8 @@
 <template>
   <div class="antialiased font-sans text-gray-900">
     <ProgressBar v-show="progressVisible" :value="progress" />
-    <nuxt class="max-w-4xl xl:max-w-5xl m-auto p-6 md:px-8" keep-alive />
+    <Header />
+    <nuxt keep-alive />
   </div>
 </template>
 

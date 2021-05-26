@@ -5,18 +5,6 @@
   </div>
 </template>
 
-<script>
-export default {
-  head() {
-    return {
-      htmlAttrs: {
-          // class: 'overflow-x-none'
-      }
-    }
-  }
-}
-</script>
-
 <style lang="postcss">
 .anchor-link {
   scroll-margin-top: 100px;

@@ -4,7 +4,7 @@
     <div class="mt-12">
       <h1 class="text-3xl md:text-4xl font-semibold leading-none">{{ title }}</h1>
       <h3 class="mt-1 text-base text-gray-600 leading-none">{{ date }}</h3>
-      <img class="mt-3 h-48 md:h-56 lg:h-64 object-cover rounded" :src="getImage(title)" :alt="'Image of ' + title">
+      <!-- <img class="mt-3 h-48 md:h-56 lg:h-64 object-cover rounded" :src="getImage(title)" :alt="'Image of ' + title"> -->
     </div>
     <div class="mt-2">
       <slot></slot>
