@@ -1,7 +1,6 @@
 <template>
   <div id="home">
     <div class="bg-gray-900">
-      <!-- <Header /> -->
       <Container class="text-gray-50 py-12 pt-36">
         <div class="text-lg">
           <p>Hey! I’m Kirill Tregubov, a 19-year-old <span class="text-primary-300">Full-Stack Web Developer</span> from Canada. I'm currently building modern web experiences using Nuxt.js, a Javascript framework based on Vue.js. My preferred tech stack includes Node.js, Tailwind CSS, Hasura, and GraphQL. I’m also a second-year university student <span class="text-primary-300">pursuing a BSc in Computer Science</span> at the University of Toronto.</p>
@@ -31,18 +30,17 @@
     </div>
 
     <div class="bg-hero-pattern bg-clip-padding">
-      <div id="experience" class="anchor-link">
+      <!-- <div id="experience" class="anchor-link">
         <Container>
           <h1 class="pb-1 text-3xl font-bold">Experience</h1>
         </Container>
-      </div>
-
+      </div> -->
       <div id="projects" class="anchor-link">
         <Container>
           <h1 class="pb-1 text-3xl font-bold">Conceptual Projects</h1>
           <div class="text-0">
-            <Project name="House Tracker" description="Web app for students living in residence that keeps track of event participation." :stack="['Vue.js', 'Vuex', 'Tailwind CSS', 'PHP', 'MySQL']" info="/housetracker" />
-            <Project name="Winelier" description="A web directory of Canadian wineries, wine related events and a blog." :stack="['Vue.js', 'Vuex', 'Sass', 'PHP', 'MySQL']" info="/winelier" />
+            <Project name="House Tracker" description="Web app for students living in residence that keeps track of event participation." :stack="['Vue.js', 'Vuex', 'Tailwind CSS', 'PHP', 'MySQL']" info="/blog/housetracker" />
+            <Project name="Winelier" description="A web directory of Canadian wineries, wine related events and a blog." :stack="['Vue.js', 'Vuex', 'Sass', 'PHP', 'MySQL']" info="/blog/winelier" />
           </div>
         </Container>
         <Container>

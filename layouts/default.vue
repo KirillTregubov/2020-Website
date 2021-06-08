@@ -29,4 +29,8 @@
   transform: scaleX(0);
   transform-origin: bottom right;
 }
+
+svg {
+  display: initial;
+}
 </style>

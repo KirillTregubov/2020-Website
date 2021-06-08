@@ -1,0 +1,4 @@
+pages/blog/index.vue
+pages/housetracker.vue
+pages/winelier.vue
+layouts/error.vue

@@ -73,8 +73,8 @@ export default {
     'content:file:beforeInsert': (document) => {
       if (document.extension === '.md') {
         const { minutes } = require('reading-time')(document.text)
-
-        document.timeToRead = Math.floor(minutes)
+        let value = Math.floor(minutes)
+        document.timeToRead = (value == 0 ? 1 : value)
       }
     },
   },

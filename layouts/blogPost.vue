@@ -1,6 +1,6 @@
 <template>
   <div class="antialiased font-sans text-gray-900">
-    <ProgressBar v-show="progressVisible" :value="progress" />
+    <!-- <ProgressBar v-show="progressVisible" :value="progress" /> -->
     <Header />
     <nuxt keep-alive />
   </div>
@@ -29,18 +29,18 @@ export default {
   mounted() {
     window.onNuxtReady(() => {
       this.progressVisible = true
-      this.onScroll()
+      // this.onScroll()
     })
   },
   created() {
     if (process.browser) {
-      this.onScroll()
-      window.addEventListener('scroll', this.onScroll);
+      // this.onScroll()
+      // window.addEventListener('scroll', this.onScroll);
     }
   },
   beforeDestroy() {
     if (process.browser) {
-      window.removeEventListener('scroll', this.onScroll);
+      // window.removeEventListener('scroll', this.onScroll);
     }
   }
 }

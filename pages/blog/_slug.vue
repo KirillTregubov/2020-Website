@@ -1,8 +1,8 @@
 <template>
   <div>
-    <button class="fixed bottom-0 right-0 m-6 text-primary-400 rounded-full focus:outline-none focus:shadow-outline">
+    <!-- <button class="fixed bottom-0 right-0 m-6 text-primary-400 rounded-full focus:outline-none focus:shadow-outline">
       <svg class="h-10 w-10 -m-1 fill-current" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.707l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clip-rule="evenodd"></path></svg>
-    </button>
+    </button> -->
     <div class="divide-y divide-gray-200">
       <Container class="text-center pb-3 pt-36">
         <dl class="block xs:flex justify-center text-base leading-4 font-medium text-gray-500">
@@ -37,7 +37,7 @@
               <nuxt-content :document="article" />
             </div>
             <div>
-              <h4 class="py-6 text-lg text-gray">Like what you read? <nuxt-link to="/blog" class="inline-link">Read more ›</nuxt-link></h4>
+              <h4 class="py-6 text-lg text-gray">Like what you read? <nuxt-link to="/" class="inline-link">Read more ›</nuxt-link></h4>
             </div>
           </article>
           <div class="w-full md:w-1/4 sticky top-0 break-words ml-10 divide-y divide-gray-200">
@@ -51,13 +51,13 @@
                 <nuxt-link :to="'/blog/' + prev.slug" class="text-base font-medium text-primary-500">{{ prev.title }}</nuxt-link>
               </div>
             </div>
-            <div class="py-6">
+            <!-- <div class="py-6">
               <h2 class="text-sm tracking-wide font-medium uppercase text-gray-500">Share article</h2>
-              <!-- <client-only placeholder="Loading...">
+              <client-only placeholder="Loading...">
                 <twitter-button class="share-button--circle" :description="article.title" btnText />
                 <facebook-button class="share-button--circle" :description="article.title" btnText />
-              </client-only> -->
-            </div>
+              </client-only>
+            </div> -->
           </div>
         </div>
       </Container>

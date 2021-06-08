@@ -2,7 +2,8 @@
   <header class="fixed top-0 bg-gray-900 bg-opacity-95 transform-gpu text-gray-050 w-full z-10">
     <Container class="block justify-between select-none md:flex">
       <div class="flex justify-between items-center z-20 xl:-ml-24">
-        <nuxt-link :to="isBlog ? '/blog' : '/'" class="flex items-center group" v-on:click.native="scrollToTop(isBlog)">
+        <!-- isBlog ? '/blog' : '/'  -->
+        <nuxt-link :to="'/'" class="flex items-center group" v-on:click.native="scrollToTop(isBlog)">
           <img class="hidden h-12 w-12 rounded-full lg:h-16 lg:w-16" :class="[isBlog ? 'sm:inline-block' : 'xs:inline-block']" src="@/assets/images/profile.jpg" alt="Portrait of Kirill Tregubov" />
           <h1 v-if="!isBlog" class="xs:ml-3 xl:ml-8 text-2xl lg:text-3xl xl:text-4xl font-black leading-none">
             Kirill Tregubov
@@ -25,16 +26,16 @@
 
       <div class="smooth transform-gpu flex w-full z-10 text-gray-100 md:text-gray-200 rounded-md md:w-auto md:mt-0 md:items-center md:opacity-100" :class="[ !menu ? 'collapsed' : '']">
         <ul class="mt-6 md:mt-0 flex w-full justify-around md:space-x-3 font-semibold text-lg md:text-base">
-          <li v-if="isHome" class="py-2 md:py-0">
+          <!-- <li v-if="isHome" class="py-2 md:py-0">
             <a href="#experience" @click="menu = false" class="px-4 py-4 md:py-2 focus:outline-none hover:text-gray-50 focus:text-gray-50">Experience</a>
-          </li>
+          </li> -->
           <li class="py-2 md:py-0">
             <a v-if="isHome" href="#projects" @click="menu = false" class="px-4 py-4 md:py-2 focus:outline-none hover:text-gray-50 focus:text-gray-50">Projects</a>
             <nuxt-link v-if="latestArticle" :to="latestArticle" @click="menu = false" class="px-4 py-4 md:py-2 focus:outline-none hover:text-gray-50 focus:text-gray-50">Latest Article</nuxt-link>
           </li>
           <li class="py-2 md:py-0">
-            <nuxt-link v-if="isHome" to="/blog" @click="menu = false" class="px-4 py-4 md:py-2 focus:outline-none hover:text-gray-50 focus:text-gray-50">Blog</nuxt-link>
-            <nuxt-link v-else to="/" @click="menu = false" class="px-4 py-4 md:py-2 focus:outline-none hover:text-gray-50 focus:text-gray-50">About Me</nuxt-link>
+            <!-- <nuxt-link v-if="isHome" to="/blog" @click="menu = false" class="px-4 py-4 md:py-2 focus:outline-none hover:text-gray-50 focus:text-gray-50">Blog</nuxt-link> -->
+            <nuxt-link v-if="!isHome" to="/" @click="menu = false" class="px-4 py-4 md:py-2 focus:outline-none hover:text-gray-50 focus:text-gray-50">About Me</nuxt-link>
           </li>
         </ul>
       </div>
