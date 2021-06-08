@@ -59,6 +59,7 @@ export default {
       .sortBy('createdAt', 'desc')
       .limit(1)
       .fetch()
+    console.log(article[0].path)
     this.latestArticle = article[0].path
   },
   computed: {
@@ -91,6 +92,7 @@ export default {
     }
   },
   created () {
+    this.$fetch()
     if (process.browser) {
       window.addEventListener('keydown', this.handleEscape)
     }
