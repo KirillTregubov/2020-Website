@@ -25,23 +25,23 @@ export default {
         this.progress = progress
       }
     }
-  },
-  mounted() {
-    window.onNuxtReady(() => {
-      this.progressVisible = true
-      // this.onScroll()
-    })
-  },
-  created() {
-    if (process.browser) {
-      // this.onScroll()
-      // window.addEventListener('scroll', this.onScroll);
-    }
-  },
-  beforeDestroy() {
-    if (process.browser) {
-      // window.removeEventListener('scroll', this.onScroll);
-    }
   }
+  // mounted() {
+  //   window.onNuxtReady(() => {
+  //     this.progressVisible = true
+  //     // this.onScroll()
+  //   })
+  // },
+  // created() {
+  //   if (process.browser) {
+  //     // this.onScroll()
+  //     // window.addEventListener('scroll', this.onScroll);
+  //   }
+  // },
+  // beforeDestroy() {
+  //   if (process.browser) {
+  //     // window.removeEventListener('scroll', this.onScroll);
+  //   }
+  // }
 }
 </script>
