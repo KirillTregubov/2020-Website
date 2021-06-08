@@ -29,12 +29,13 @@
           <!-- <li v-if="isHome" class="py-2 md:py-0">
             <a href="#experience" @click="menu = false" class="px-4 py-4 md:py-2 focus:outline-none hover:text-gray-50 focus:text-gray-50">Experience</a>
           </li> -->
-          <li class="py-2 md:py-0">
-            <a v-if="isHome" href="#projects" @click="menu = false" class="px-4 py-4 md:py-2 focus:outline-none hover:text-gray-50 focus:text-gray-50">Projects</a>
-            <nuxt-link v-if="latestArticle" :to="latestArticle" @click="menu = false" class="px-4 py-4 md:py-2 focus:outline-none hover:text-gray-50 focus:text-gray-50">Latest Article</nuxt-link>
+          <li class="py-2 md:py-0" v-if="isHome">
+            <a href="#projects" @click="menu = false" class="px-4 py-4 md:py-2 focus:outline-none hover:text-gray-50 focus:text-gray-50">Projects</a>
           </li>
           <li class="py-2 md:py-0">
             <!-- <nuxt-link v-if="isHome" to="/blog" @click="menu = false" class="px-4 py-4 md:py-2 focus:outline-none hover:text-gray-50 focus:text-gray-50">Blog</nuxt-link> -->
+            <!-- v-if="latestArticle" -->
+            <nuxt-link :to="latestArticle" @click="menu = false" class="px-4 py-4 md:py-2 focus:outline-none hover:text-gray-50 focus:text-gray-50">Latest Article</nuxt-link>
             <nuxt-link v-if="!isHome" to="/" @click="menu = false" class="px-4 py-4 md:py-2 focus:outline-none hover:text-gray-50 focus:text-gray-50">About Me</nuxt-link>
           </li>
         </ul>
@@ -54,7 +55,6 @@ export default {
   },
   async fetch() {
     const article = await this.$content('blog')
-      .only([])
       .where({ hidden: { $ne: true } })
       .sortBy('createdAt', 'desc')
       .limit(1)
