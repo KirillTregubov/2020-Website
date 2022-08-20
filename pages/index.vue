@@ -39,7 +39,6 @@
         <Container>
           <h1 class="pb-1 text-3xl font-bold">Conceptual Projects</h1>
           <div class="text-0">
-            <Project name="House Tracker" description="Web app for students living in residence that keeps track of event participation." :stack="['Vue.js', 'Vuex', 'Tailwind CSS', 'PHP', 'MySQL']" info="/blog/housetracker" />
             <Project name="Winelier" description="A web directory of Canadian wineries, wine related events and a blog." :stack="['Vue.js', 'Vuex', 'Sass', 'PHP', 'MySQL']" info="/blog/winelier" />
           </div>
         </Container>
